@@ -1,3 +1,8 @@
+# ignore the data of experiemnt because of personal private information
+raw_data/
+data/
+figs/
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
