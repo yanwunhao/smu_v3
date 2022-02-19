@@ -1,6 +1,7 @@
 import numpy as np
 import networkx as nx
 
+
 def extract_backswing(curve, threshold):
     reversed_curve = np.array(curve, dtype=float).tolist()
     reversed_curve.reverse()
@@ -12,6 +13,16 @@ def extract_backswing(curve, threshold):
         else:
             return round(count / len(curve), 3)
     return -1
+
+
+def extract_tt(curve, threshold):
+    count = 0
+    for element in curve:
+        if element < threshold:
+            count = count + 1
+        else:
+            pass
+    return round(count/len(curve), 3)
 
 
 def extract_trt(curve, threshold):

@@ -2,7 +2,7 @@ import numpy as np
 
 import csv
 
-from util.features import extract_backswing, extract_trt
+from util.features import extract_backswing, extract_trt, extract_tt
 
 with open('./data/handled_curve.csv', 'r', encoding='utf-8-sig') as f:
     csv_reader = csv.reader(f)
@@ -41,8 +41,9 @@ for data in normalized_curves:
     # extract backswing and TRT
     backswing = extract_backswing(data, AVG)
     trt = extract_trt(data, AVG)
+    tt = extract_tt(data, AVG)
 
-    feature_vector = [delta_q, backswing, trt]
+    feature_vector = [delta_q, backswing, tt, trt]
     statistical_features_list.append(feature_vector)
 
 # merge features and sample_num into one matrix
