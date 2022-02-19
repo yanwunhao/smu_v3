@@ -139,7 +139,7 @@ with open('./data/handled_parameter.csv', 'w') as f:
         csv_writer.writerow(sample)
     f.close()
 
-with open('./data/handle_curve.csv', 'w') as f:
+with open('./data/handled_curve.csv', 'w') as f:
     csv_writer = csv.writer(f)
     for curve in handled_curve:
         csv_writer.writerow(curve)
