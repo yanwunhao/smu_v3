@@ -1,5 +1,5 @@
 import numpy as np
-
+import networkx as nx
 
 def extract_backswing(curve, threshold):
     reversed_curve = np.array(curve, dtype=float).tolist()
@@ -33,3 +33,20 @@ def extract_trt(curve, threshold):
             continue
 
     return count
+
+
+def extract_average_degree(natural_graph, horizontal_graph):
+    return (len(natural_graph) * 2 - len(horizontal_graph)) / 20.
+
+
+def extract_average_path_length(natural_graph):
+    G = nx.Graph(natural_graph)
+    average_path_length = nx.average_shortest_path_length(G)
+    return average_path_length
+
+
+def extract_transitivity(natural_graph):
+    G = nx.Graph(natural_graph)
+    transitivity = nx.transitivity(G)
+    return transitivity
+
