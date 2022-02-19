@@ -4,6 +4,8 @@ import matplotlib.pyplot as plt
 import csv
 import os
 
+from util.tool import sort_ts
+
 with open('./raw_data/smu_data.csv', 'r', encoding='utf-8-sig') as f:
     csv_reader = csv.reader(f)
     rows = [row for row in csv_reader]
@@ -79,6 +81,8 @@ for i in range(len(selected_samples)):
             x_series = np.delete(x_series, indexes_to_remove)
             y_series = np.delete(y_series, indexes_to_remove)
 
+            x_series, y_series = sort_ts(x_series, y_series)
+
             # perform a definite integral on curve among [0,vt]
             start = x_series[0]
             end = x_series[-1]
@@ -95,6 +99,7 @@ for i in range(len(selected_samples)):
 
             # draw figs
             plot_x = range(200)
+            plt.cla()
             plt.plot(plot_x, y_series, color='black', linewidth=2)
             plt.savefig('./figs/' + number + '.jpg')
 
