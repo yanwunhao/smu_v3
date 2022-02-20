@@ -28,14 +28,14 @@ with open('./data/topological_feature.csv', 'r', encoding='utf-8-sig') as f:
 
 medical_parameter = np.array(medical_parameter).T
 
-booi_value = np.array(medical_parameter[2], dtype=float)
+bci_value = np.array(medical_parameter[1], dtype=float)
 pvr_list = np.array(medical_parameter[-3], dtype=float)
 
 label = []
-for sample_booi in booi_value:
-    if sample_booi < 40:
+for sample_bci in bci_value:
+    if sample_bci > 100:
         label.append(0)
-    elif sample_booi > 40:
+    elif sample_bci <= 100:
         label.append(1)
     else:
         print("error")
@@ -44,7 +44,7 @@ statistical_parameter = np.array(statistical_parameter).T
 topological_parameter = np.array(topological_parameter).T
 
 feature_matrix = [statistical_parameter[1], statistical_parameter[2], statistical_parameter[3], statistical_parameter[4],
-                  topological_parameter[1], topological_parameter[2], topological_parameter[3],
+                  # topological_parameter[1], topological_parameter[2], topological_parameter[3],
                   pvr_list]
 
 feature_matrix = np.array(feature_matrix, dtype=float)
@@ -56,6 +56,6 @@ for feature_line in feature_matrix:
 
 normalized_feature_matrix = np.array(normalized_feature_matrix, dtype=float).T
 
-cv = KFold(n_splits=10, shuffle=True, random_state=123)
-ax = plot_learning_curve(RandomForestClassifier(n_estimators=30, max_depth=4, min_samples_split=10, random_state=10), "Booi Classification with Topo Features", normalized_feature_matrix, label, ax=None, cv=cv)
+cv = KFold(n_splits=5, shuffle=True, random_state=100)
+ax = plot_learning_curve(RandomForestClassifier(n_estimators=50, max_depth=3, min_samples_split=10, random_state=10), "Bci Classification without Topo Features", normalized_feature_matrix, label, ax=None, cv=cv)
 plt.show()

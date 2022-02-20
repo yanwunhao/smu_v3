@@ -25,6 +25,9 @@ def plot_learning_curve(estimator, title, x, y, ax=None, ylim=None, cv=None, n_j
     ax.set_xlabel("Training Examples")
     ax.set_ylabel("Score")
     ax.grid()
+
+    print(train_sizes)
+
     ax.plot(train_sizes, np.mean(train_scores, axis=1), 'o-', color="r", label="Training Score")
     ax.plot(train_sizes, np.mean(test_scores, axis=1), 'o-', color="b", label="Test Score")
     ax.legend(loc="best")
