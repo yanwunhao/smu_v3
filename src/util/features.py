@@ -18,15 +18,15 @@ def extract_backswing(curve, threshold):
 def extract_maxtime(curve):
     max_value = np.max(curve)
     return max_value
-
-def extract_tt(curve, threshold):
-    count = 0
-    for element in curve:
-        if element < threshold:
-            count = count + 1
-        else:
-            pass
-    return round(count/len(curve), 3)
+#
+# def extract_tt(curve, threshold):
+#     count = 0
+#     for element in curve:
+#         if element < threshold:
+#             count = count + 1
+#         else:
+#             pass
+#     return round(count/len(curve), 3)
 
 
 def extract_trt(curve, threshold):
